@@ -6,14 +6,19 @@
 
 #define ERR -1
 
-/* function prototypes */
+/* chapter one - function prototypes (alphabetical order) */
 void blanksTabsNewlines(FILE *loremipsum);
+void celsiusToFahrenheitTable();
 void contractBlanks(FILE *loremipsum);
 void helloWorld();
 void printEOF();
+void printEscapes();
 void printWordPerLine(FILE *loremipsum);
+void reverseTemperatureTable();
 void swap(int *a, int *b);
+void temperatureTableWithHeader();
 void textFileStatistics(FILE *loremipsum);
+void verifyGetChar(FILE *loremipsum);
 void visibleEscapes(FILE *loremipsum);
 
 int main(void) {
@@ -37,15 +42,87 @@ void helloWorld() {
     printf("hello, world!\n");
 }
 
-/* exercise 1.2 - Experiment to find out what happens when printf’s argument string contains \c , where c is some character not listed above. */
+/* exercise 1.2 - Experiment to find out what happens when printf’s argument string contains \c, where c is some character not listed above. */
+void printEscapes() {
+    /* basically experiment with different escape characters */
+    printf("contents: \\\n");
+}
 
 /* exercise 1.3 - Modify the temperature conversion program to print a heading above the table. */
+void temperatureTableWithHeader() {
+    /* a given temperature converter program via C programming guide */
+    float fahr, celsius;
+    int lower, upper, step;
+
+    lower = 0; /* lower limit of temperature table */
+    upper = 300; /* upper limit */
+    step = 20; /* step size */
+    fahr = lower;
+
+    /* injected print statement */
+    printf("fahrenheit to celsius temperature converter\n\nfahrenheit\tcelsius\n");
+
+    while (fahr <= upper) {
+        celsius = (5.0/9.0) * (fahr - 32.0);
+        printf("%3.0f\t\t%6.1f\n", fahr, celsius);
+
+        fahr += step;
+    }
+}
 
 /* exercise 1.4 - Write a program to print the corresponding Celsius to Fahrenheit table. */
+void celsiusToFahrenheitTable() {
+    float fahr, celsius;
+    int lower, upper, step;
+
+    lower = 0; /* lower limit of temperature table */
+    upper = 300; /* upper limit */
+    step = 20; /* step size */
+    fahr = lower;
+
+    printf("celsius to fahrenheit temperature converter\n\ncelsius\t\tfahrenheit\n");
+
+    while (fahr <= upper) {
+        celsius = (5.0/9.0) * (fahr - 32.0);
+        printf("%6.1f\t\t%3.0f\n", celsius, fahr);
+
+        fahr += step;
+    }
+}
 
 /* exercise 1.5 - Modify the temperature conversion program to print the table in reverse order, that is, from 300 degrees to 0. */
+void reverseTemperatureTable() {
+    float fahr, celsius;
+    int lower, upper, step;
+
+    lower = 300;
+    upper = 0;
+    step = 20;
+    fahr = lower;
+
+    printf("celsius to fahrenheit temperature converter\n\ncelsius\t\tfahrenheit\n");
+
+    while(fahr >= upper) {
+        celsius = (5.0/9.0) * (fahr - 32.0);
+        printf("%6.1f\t\t%3.0f\n", celsius, fahr);
+
+        fahr -= step;
+    }
+}
 
 /* exercise 1.6 - Verify that the expression, (getchar() != EOF) is 0 or 1. */
+void verifyGetChar(FILE *loremipsum) {
+    printf("Enter a character\n");
+
+    int c = getchar();
+
+    if(c != EOF)
+        printf("\ncharacter != EOF = 1\n");
+    else
+        printf("\ncharacter == EOF = 0\n");
+
+    printf("\nCharacter entered: %c\n", c);
+}
 
 /* exercise 1.7 - Write a program to print the value of EOF. */
 void printEOF() {
